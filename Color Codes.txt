@@ -1,0 +1,72 @@
+Type Colors:
+
+Normal: #B5B58C
+Fire: #F2A16B
+Water: #85A5DC
+Electric: #FAD65D
+Grass: #8DCB72
+Ice: #B2E3E1
+Fighting: #D25757
+Poison: #BA59B2
+Ground: #E8C88D
+Flying: #C1A7F5
+Psychic: #F783A1
+Bug: #B0C948
+Rock: #C0AA6B
+Ghost: #8E75A4
+Dragon: #8464E0
+Dark: #88715A
+Steel: #C0C0D8
+Fairy: #E1A5BD
+Default: #FFFFFF
+Generation Colors:
+
+Generation 1 (Red/Blue/Green): #C97A77
+Generation 2 (Gold/Silver): #C5B88D
+Generation 3 (Ruby/Sapphire): #7FA6C8
+Generation 4 (Diamond/Pearl): #A5A2C6
+Generation 5 (Black/White): #C4C4C4
+Generation 6 (X/Y): #A1C687
+Generation 7 (Sun/Moon): #F7B886
+Generation 8 (Sword/Shield): #9EABB8
+Generation 9 (Scarlet/Violet): #D28BA6
+
+GenerationColorCode = 
+SWITCH(
+    TRUE(),
+    species[Gen] = "Gen 1", "#FF5E5A",   // Gen 1 - Vibrant Red/Blue Theme
+    species[Gen] = "Gen 2", "#E0C278",   // Gen 2 - Vibrant Gold/Silver Theme
+    species[Gen] = "Gen 3", "#5D9FE8",   // Gen 3 - Vibrant Ruby/Sapphire Theme
+    species[Gen] = "Gen 4", "#8B7FD4",   // Gen 4 - Vibrant Diamond/Pearl Theme
+    species[Gen] = "Gen 5", "#D1D1D1",   // Gen 5 - Vibrant Black/White Theme
+    species[Gen] = "Gen 6", "#76D34D",   // Gen 6 - Vibrant X/Y Theme
+    species[Gen] = "Gen 7", "#FF995A",   // Gen 7 - Vibrant Sun/Moon Theme
+    species[Gen] = "Gen 8", "#89A2BC",   // Gen 8 - Vibrant Sword/Shield Theme
+    species[Gen] = "Gen 9", "#E66A94",   // Gen 9 - Vibrant Violet/Scarlet Theme
+    "#FFFFFF"                             // Default color if no match found
+)
+
+TypeColors = 
+SWITCH(
+    TRUE(),
+    types[Type] = "Normal", "#D1D190",          // Normal - More vibrant
+    types[Type] = "Fire", "#FF8A53",            // Fire - More vibrant
+    types[Type] = "Water", "#5C8EF2",           // Water - More vibrant
+    types[Type] = "Electric", "#FFD700",        // Electric - More vibrant
+    types[Type] = "Grass", "#71D657",           // Grass - More vibrant
+    types[Type] = "Ice", "#A0F2EE",             // Ice - More vibrant
+    types[Type] = "Fighting", "#E05C5C",        // Fighting - More vibrant
+    types[Type] = "Poison", "#DA5EDA",          // Poison - More vibrant
+    types[Type] = "Ground", "#F1B673",          // Ground - More vibrant
+    types[Type] = "Flying", "#AB8FFF",          // Flying - More vibrant
+    types[Type] = "Psychic", "#FF6394",         // Psychic - More vibrant
+    types[Type] = "Bug", "#A3E030",             // Bug - More vibrant
+    types[Type] = "Rock", "#D6B564",            // Rock - More vibrant
+    types[Type] = "Ghost", "#9A72D8",           // Ghost - More vibrant
+    types[Type] = "Dragon", "#6E51FF",          // Dragon - More vibrant
+    types[Type] = "Dark", "#A3764D",            // Dark - More vibrant
+    types[Type] = "Steel", "#C8C8F0",           // Steel - More vibrant
+    types[Type] = "Fairy", "#FF85B5",           // Fairy - More vibrant
+    "#FFFFFF"                                   // Default color if no match found
+)
+
