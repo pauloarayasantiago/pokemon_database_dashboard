@@ -16,7 +16,7 @@ This repository documents the end-to-end process of creating a Pokémon database
 This project focuses on extracting, cleaning, and visualizing Pokémon data. It integrates multiple tools and technologies to demonstrate the complete lifecycle of a data engineering project, including API consumption, database optimization, and business intelligence visualizations.
 
 ### Objectives:
-- Extract Pokémon data from the PokeAPI.
+- Extract Pokémon data from the ![PokeAPI](https://pokeapi.co/).
 - Clean and optimize the data for relational database storage.
 - Analyze and visualize data using Power BI.
 
