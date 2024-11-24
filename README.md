@@ -45,6 +45,7 @@ This project focuses on extracting, cleaning, and visualizing Pokémon data. It 
 ### Steps:
 1. **Data Import and Optimization**:
    - Imported the CSV files into a SQL database and optimized the data structure for querying.
+![SQL Import Screenshot](./screenshots/sql%201.png)
 
 2. **Data Cleaning**:
    - Cleaned up data inconsistencies, ensuring accurate relationships between tables.
