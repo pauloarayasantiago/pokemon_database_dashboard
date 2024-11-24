@@ -27,12 +27,12 @@ This project focuses on extracting, cleaning, and visualizing Pokémon data. It 
 ### Steps:
 1. **Access PokeAPI**:
    - Extract Pokémon data from [PokeAPI](https://pokeapi.co/) using Python's `requests` library.
-![PokeAPI Screenshot](./screenshots/pokeapi%20landing.png)
+![PokeAPI Screenshot](./screenshots/pokeapi%20sample%202.png)
 
 
 2. **Flatten JSON Data**:
    - Custom functions were developed to transform JSON structures into tabular formats suitable for pandas DataFrames.
-![PokeAPI Screenshot](./screenshots/pokeapi%20sample%202.png)
+![PokeAPI Screenshot](./screenshots/pokeapi%20json%20structure.png)
 
 3. **Export Data**:
    - Save cleaned and structured data as CSV files for database import.
