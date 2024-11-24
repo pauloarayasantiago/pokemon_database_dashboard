@@ -32,6 +32,7 @@ This project focuses on extracting, cleaning, and visualizing Pokémon data. It 
 
 2. **Flatten JSON Data**:
    - Custom functions were developed to transform JSON structures into tabular formats suitable for pandas DataFrames.
+![PokeAPI Screenshot](./screenshots/pokeapi%20sample%202.png)
 
 3. **Export Data**:
    - Save cleaned and structured data as CSV files for database import.
