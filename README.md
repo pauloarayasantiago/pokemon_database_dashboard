@@ -1,49 +1,137 @@
 # Pokémon Database Analysis and Visualization Project
 
-This project takes you on a data journey—from the raw JSON data provided by the [PokeAPI](https://pokeapi.co/) to a fully interactive Power BI dashboard. Each step along the way is supported by carefully structured code, relational database design, data transformations, and advanced DAX calculations. The included screenshots (all located in the `./screenshots` folder) provide a visual guide through each phase of the process, helping you understand not only what was done, but also how the data pipeline was conceived, built, and refined.
+This repository documents a comprehensive end-to-end workflow for extracting, transforming, and analyzing Pokémon datasets sourced from the [PokeAPI](https://pokeapi.co/). It integrates Python-based data ingestion, relational database normalization in SQL Server and PostgreSQL, and advanced visualization techniques in Power BI. The following narrative and inlined images illustrate each stage of the pipeline with technical rigor.
 
 ## Overview
 
-The central goal: transform a sprawling, nested API dataset into a well-organized, analytics-ready database and then visualize actionable insights about Pokémon. By the end of this process, you can:
-
-- Examine Pokémon stats across generations.
-- Compare Legendary versus regular Pokémon distributions.
-- Explore type-driven performance trends and identify the strongest Pokémon based on your chosen stat.
-
-This project demonstrates how to leverage Python, SQL, PostgreSQL, and Power BI to build a seamless analytics pipeline.
+The objective is to operationalize raw, nested JSON data into a high-quality, analytics-ready schema. Subsequently, Power BI dashboards leverage dynamic DAX measures and modeling techniques to deliver interactive insights—ranging from generational distributions and type-based performance metrics to identifying standout Pokémon by custom-defined criteria.
 
 ## Data Extraction and Transformation
 
-We begin our journey at the [PokeAPI landing page](./screenshots/pokeapi_landing.png), where all Pokémon data originates. Raw JSON responses, as shown in [these samples](./screenshots/pokeapi_sample_1.png) and [these samples](./screenshots/pokeapi_sample_2.png), reveal the nested structure of Pokémon attributes. Understanding this structure—seen in the [PokeAPI JSON hierarchy](./screenshots/pokeapi_json_structure.png)—guides how we flatten and normalize the data.
+Extraction initiates from the PokeAPI, where a RESTful endpoint provides hierarchical Pokémon data:
 
-A custom Python script ([python_api_request.png](./screenshots/python_api_request.png)) fetches the data. Within it, [custom parsing functions](./screenshots/python_custom_function.png) and [data transformation helpers](./screenshots/python_custom_function_2.png) convert hierarchical JSON into tidy pandas DataFrames. Each function step ensures that when the data finally enters our SQL environment, it’s already organized and consistent.
+![PokeAPI Landing Page](./screenshots/pokeapi_landing.png)
 
-## Database Design and Management
+Representative JSON structures demonstrate the complexity of the data model:
 
-Once extracted and shaped, the data moves into SQL Server Management Studio (SSMS). The [initial schema creation script](./screenshots/sql_CreateTable.png) lays out relational tables for species, types, stats, and more, as seen in the [SSMS database structure view](./screenshots/sql_ssms_structure.png).
+![Raw JSON Sample #1](./screenshots/pokeapi_sample_1.png)
+![Raw JSON Sample #2](./screenshots/pokeapi_sample_2.png)
 
-Normalization and cleanup occur here. For example, the [stats and types cleanup process](./screenshots/sql_stats_types_table.png) and [subsequent refinements](./screenshots/sql_types_cleanup.png) ensure that data anomalies are addressed and each Pokémon’s attributes adhere to a unified standard. A [fully transformed types table](./screenshots/sql_types_transformed.png) shows how primary and secondary types are integrated into a coherent structure.
+These hierarchical formats necessitate a structured flattening procedure:
 
-Window functions and advanced SQL logic refine the dataset further. The [species cleanup step](./screenshots/sql_species_cleanup.png) removes duplicates and isolates unique entries. By joining these refined tables, a [unique key dataset](./screenshots/sql_unique_key.png) emerges, providing a reliable backbone for advanced analytics.
+![PokeAPI JSON Hierarchy](./screenshots/pokeapi_json_structure.png)
 
-After building a solid SQL foundation, the data is migrated to PostgreSQL for scalability. [pgAdmin views](./screenshots/sql_pg_admin.png) and [inspection of the species data](./screenshots/sql_pgadmin_species.png) confirm successful transfer and verification in a new environment, setting the stage for robust queries and integration with analytics tools.
+A Python script orchestrates data retrieval and parsing:
 
-## Power BI Visualization and Insights
+![Python API Request Code](./screenshots/python_api_request.png)
 
-With a stable, well-structured dataset ready, the next step is visual storytelling in Power BI. A [dual typings table](./screenshots/pbi_dual_typings_table.png) in Power BI demonstrates how linking Pokémon IDs to multiple types enables rich visuals and color coding. DAX comes into play, assigning unique generation-based color themes ([pbi_GenerationsColorCode_DAX.png](./screenshots/pbi_GenerationsColorCode_DAX.png)) and distinct colors per Pokémon type ([pbi_PrimaryTypeColor_DAX.png](./screenshots/pbi_PrimaryTypeColor_DAX.png)).
+Custom Python functions transform the nested JSON payloads into normalized pandas DataFrames, ensuring columnar integrity and facilitating subsequent database ingestion:
 
-Introductory dashboard pages ([pbi_Intro.png](./screenshots/pbi_Intro.png), [pbi_Intro_2.png](./screenshots/pbi_Intro_2.png)) help users navigate and understand the data landscape—exploring type distributions, generations, and dataset instructions. More focused analytics follow: [pbi_Legendary.png](./screenshots/pbi_Legendary.png) and [pbi_Legendary_2.png](./screenshots/pbi_Legendary_2.png) use line graphs and pie charts to compare Legendary and regular Pokémon over multiple generations.
+![Custom Python Function #1](./screenshots/python_custom_function.png)
+![Custom Python Function #2](./screenshots/python_custom_function_2.png)
 
-Advanced DAX measures enable dynamic insights. [pbi_PokemonWithHighestStat_DAX.png](./screenshots/pbi_PokemonWithHighestStat_DAX.png) reveals the strongest Pokémon based on a user-selected stat, while [pbi_relationships.png](./screenshots/pbi_relationships.png) shows the solid data model that links species, stats, and types. The [pbi_species_table.png](./screenshots/pbi_species_table.png) confirms that all species data is at your fingertips.
+## Relational Database Design and Management
 
-## Deeper Analysis and Interaction
+Upon successful extraction and restructuring, the data is ingested into SQL Server Management Studio (SSMS). The schema creation process establishes relational integrity and normalization:
 
-As exploration deepens, pages like [pbi_StatsByType.png](./screenshots/pbi_StatsByType.png) and [pbi_StatsByType_2.png](./screenshots/pbi_StatsByType_2.png) break down stats distribution by type, offering both average and max metrics per stat. Custom measures, such as those in [pbi_StrongestPokemonPrimaryType_DAX.png](./screenshots/pbi_StrongestPokemonPrimaryType_DAX.png) and [pbi_StrongestPokemonPrimaryTypeColor_DAX.png](./screenshots/pbi_StrongestPokemonPrimaryTypeColor_DAX.png), guide users to identify standout Pokémon.
+![SQL Create Table Script](./screenshots/sql_CreateTable.png)
 
-Speed-focused pages, illustrated by [pbi_SurvivalOfTheFittest_DAX.png](./screenshots/pbi_SurvivalOfTheFittest_DAX.png), highlight the fastest Pokémon and type-based speed trends. Dynamic DAX measures—like [pbi_XAvgDynamicStat_DAX.png](./screenshots/pbi_XAvgDynamicStat_DAX.png), [pbi_XMaxDynamicStat_DAX.png](./screenshots/pbi_XMaxDynamicStat_DAX.png), [pbi_YAvgDynamicStat_DAX.png](./screenshots/pbi_YAvgDynamicStat_DAX.png), and [pbi_YMaxDynamicStat_DAX.png](./screenshots/pbi_YMaxDynamicStat_DAX.png)—empower users to compare stats along multiple dimensions. A [stat selector interface](./screenshots/pbi_XStatSelector_DAX.png) encourages interactive exploration, making complex analyses accessible.
+The resulting schema is visible in SSMS, reflecting a fully normalized relational database with distinct tables for species, stats, and types:
 
-## Technologies Used
+![SSMS Database Structure](./screenshots/sql_ssms_structure.png)
 
-- **Python (requests, pandas)**: Data extraction and transformation.
-- **SQL Server & PostgreSQL**: Schema design, normalization, and scalable data storage.
-- **Power BI & DAX**: Interactive dashboards, dynamic measures, and rich visual narratives.
+Data cleansing and transformation occur at the relational layer. Statistics and types undergo refinement to ensure consistent data domains and removal of anomalies:
+
+![Stats and Types Table Cleanup](./screenshots/sql_stats_types_table.png)  
+![Types Cleanup](./screenshots/sql_types_cleanup.png)
+
+Post-transformation, the types table is fully integrated, consolidating primary and secondary type assignments:
+
+![Transformed Types Table](./screenshots/sql_types_transformed.png)
+
+Advanced SQL techniques, including window functions, remove duplicates and standardize species entries:
+
+![Species Cleanup with Window Functions](./screenshots/sql_species_cleanup.png)
+
+By joining these refined tables, a unique key dataset emerges, forming the basis for advanced analytics:
+
+![Unique Key Dataset Construction](./screenshots/sql_unique_key.png)
+
+The clean, conformed datasets are then migrated to PostgreSQL to ensure scalability and seamless integration with modern analytics engines:
+
+![PostgreSQL Admin View](./screenshots/sql_pg_admin.png)
+![PostgreSQL Species Verification](./screenshots/sql_pgadmin_species.png)
+
+## Power BI Visualization and Analytical Layer
+
+With a stable, high-quality dataset established, Power BI is employed to model relationships and craft interactive visualizations. A dual typings table aligns Pokémon IDs to multiple type attributes, enabling category-based segmentation and color encoding:
+
+![Dual Typings in Power BI](./screenshots/pbi_dual_typings_table.png)
+
+DAX measures introduce dynamic color assignments based on generation and type categories, enhancing visual differentiation:
+
+![Generation-Based Color Coding DAX](./screenshots/pbi_GenerationsColorCode_DAX.png)
+![Primary Type Color DAX](./screenshots/pbi_PrimaryTypeColor_DAX.png)
+
+Initial dashboards offer a navigational framework, highlighting generational distributions, type frequencies, and user guidance:
+
+![Introductory Dashboard Overview](./screenshots/pbi_Intro.png)
+![Introductory Dashboard - Additional View](./screenshots/pbi_Intro_2.png)
+
+Subsequent visualizations isolate critical insights, such as Legendary vs. regular distributions across generations, employing line charts, pie charts, and slicers to facilitate user-driven exploration:
+
+![Legendary vs. Regular Distribution](./screenshots/pbi_Legendary.png)
+![Legendary Distribution - Detailed View](./screenshots/pbi_Legendary_2.png)
+
+Advanced DAX measures enable responsive analytics. The following calculation dynamically identifies the top-performing Pokémon for any selected stat:
+
+![DAX: Pokémon With Highest Stat](./screenshots/pbi_PokemonWithHighestStat_DAX.png)
+
+A robust data model ensures referential integrity and seamless interactivity:
+
+![Power BI Relationships](./screenshots/pbi_relationships.png)
+
+The raw species table is directly accessible within Power BI, serving as a lookup for generational and categorical views:
+
+![Species Data in Power BI](./screenshots/pbi_species_table.png)
+
+## Advanced Analytics and Custom Measures
+
+Deeper analyses segment and compare stats by Pokémon type. For example, average and maximum metrics can be dynamically computed and filtered:
+
+![Stats by Type Visualization #1](./screenshots/pbi_StatsByType.png)
+![Stats by Type Visualization #2](./screenshots/pbi_StatsByType_2.png)
+
+Tailored DAX measures pinpoint outliers, such as the strongest Pokémon by primary type:
+
+![DAX: Strongest Pokémon Primary Type](./screenshots/pbi_StrongestPokemonPrimaryType_DAX.png)
+![DAX: Highlighting Strongest Pokémon Primary Type](./screenshots/pbi_StrongestPokemonPrimaryTypeColor_DAX.png)
+
+Focus on specific attributes, like speed, with treemaps and bar charts that uncover evolutionary advantages and generational shifts:
+
+![Speed-Oriented Analysis](./screenshots/pbi_SurvivalOfTheFittest_DAX.png)
+
+Dynamic measures allow metric switching (e.g., average vs. max) along multiple axes, empowering complex comparative analyses:
+
+![DAX: X-Axis Avg Stat](./screenshots/pbi_XAvgDynamicStat_DAX.png)
+![DAX: X-Axis Max Stat](./screenshots/pbi_XMaxDynamicStat_DAX.png)
+![DAX: Y-Axis Avg Stat](./screenshots/pbi_YAvgDynamicStat_DAX.png)
+![DAX: Y-Axis Max Stat](./screenshots/pbi_YMaxDynamicStat_DAX.png)
+
+A stat selection table enables on-the-fly comparisons, turning a static report into an interactive analytical tool:
+
+![Stat Selector DAX Integration](./screenshots/pbi_XStatSelector_DAX.png)
+
+## Technologies Utilized
+
+- **Python (requests, pandas)**: Hierarchical data ingestion and flattening for database entry.
+- **SQL Server Management Studio & PostgreSQL**: DDL, DML, and data normalization for enterprise-grade data warehousing.
+- **Power BI with DAX**: Interactive dashboards, advanced calculation logic, and dynamic visuals.
+
+## Getting Started
+
+1. **Extract & Transform Data**: Run the Python scripts to query PokeAPI endpoints and produce normalized DataFrames.
+2. **Build the Schema & Load Data**: Execute the SQL DDL and DML scripts within SSMS or PostgreSQL, ensuring schema creation and data insertion.
+3. **Analyze & Visualize**: Open the Power BI report, interact with slicers, adjust stat measures, and derive insights from the dynamic visualizations.
+
+This project demonstrates a robust data engineering and analytics workflow, leveraging modern tools and techniques to produce an integrated, end-to-end solution for exploring complex Pokémon datasets.
