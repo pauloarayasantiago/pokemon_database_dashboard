@@ -10,7 +10,7 @@ The main objective is to demonstrate the entire lifecycle of a data project—fr
 ## Data Extraction and Integration with Python
 
 ### Data Source
-PokeAPI provides comprehensive data on Pokémon, including attributes such as stats, abilities, forms, and types. The project programmatically consumed this data using Python.
+PokeAPI provides comprehensive data on Pokémon, including attributes such as stats, abilities, forms, and types.
 
 ![PokeAPI Landing Page](./screenshots/pokeapi_landing.png)
 
@@ -18,20 +18,15 @@ PokeAPI provides comprehensive data on Pokémon, including attributes such as st
 Utilizing Python’s `requests` library, over 1,000 detailed Pokémon records were retrieved from PokeAPI. These responses arrived as nested JSON structures, demanding a careful flattening approach.
 
 Sample JSON structures highlight the complexity:
-![Raw JSON Sample #1](./screenshots/pokeapi_sample_1.png)
 ![Raw JSON Sample #2](./screenshots/pokeapi_sample_2.png)
 
-A visualization of the hierarchical JSON:
+A visualization of the hierarchical JSON in VSCode:
 ![PokeAPI JSON Hierarchy](./screenshots/pokeapi_json_structure.png)
 
 ### Data Flattening and Structuring
 Custom Python functions coupled with `pandas` DataFrames were used to normalize the JSON data, ensuring a tabular format aligned to a Pokémon ID as a unique identifier.
 
-Code snippet making the API requests:
-![Python API Request Code](./screenshots/python_api_request.png)
-
 Flattening and transformation functions:
-![Custom Python Function #1](./screenshots/python_custom_function.png)
 ![Custom Python Function #2](./screenshots/python_custom_function_2.png)
 
 ### Output to CSV
@@ -42,16 +37,13 @@ Post-transformation, the data was exported to CSV files. Each CSV focused on a d
 ## SQL Database Design and Management
 
 ### Tools
-SQL Server Management Studio (SSMS) was initially employed to establish the relational schema, followed by a migration to PostgreSQL for enhanced scalability.
+SQL Server Management Studio (SSMS) was initially employed to establish the relational schema, followed by a migration to PostgreSQL for enhanced scalability. The move to PostgreSQL was also motivated by the implementation of Azure Cloud Services, in order to have access to the database from multiples computers.
 
 ### Relational Schema Design
-Normalized tables (e.g., `species`, `stats`, `types`) were created to maintain data integrity and prevent redundancy. Primary keys (Pokémon IDs) and foreign keys defined clear relationships.
+Normalized tables (e.g., `species`, `stats`, `types`) were created to maintain data integrity and prevent redundancy. Primary keys (Pokémon IDs) and foreign keys defined clear relationships. Later on a unique key was created in order to keep track of pokemon with dual-typings, that might've been listed twice in some tables.
 
 Schema creation script:
 ![SQL Create Table](./screenshots/sql_CreateTable.png)
-
-Normalized schema in SSMS:
-![SSMS Database Structure](./screenshots/sql_ssms_structure.png)
 
 ### Data Import and Constraints
 The CSV exports were ingested into SQL Server. Constraints, primary keys, and foreign keys enforced relational integrity and optimized query execution.
@@ -60,15 +52,8 @@ The CSV exports were ingested into SQL Server. Constraints, primary keys, and fo
 Advanced SQL techniques ensured high data quality:
 
 - **CTEs**: Simplified data transformations and type pivoting.
-- **Window Functions**: Removed duplicates and selected most relevant entries.
+- **Window Functions**: Removed duplicates and explored relevant entries to make decisions on further transformations of the tables.
 - **JOINs**: Consolidated attributes from multiple tables into unified, analysis-ready views.
-
-Example of stats/types cleanup:
-![Stats and Types Table Cleanup](./screenshots/sql_stats_types_table.png)  
-Refinement of type data:
-![Types Cleanup](./screenshots/sql_types_cleanup.png)  
-Resulting fully integrated types table:
-![Transformed Types Table](./screenshots/sql_types_transformed.png)
 
 Species-level cleanup with window functions:
 ![Species Cleanup](./screenshots/sql_species_cleanup.png)
@@ -86,7 +71,7 @@ Verification in pgAdmin:
 Species data inspection:
 ![PostgreSQL Species Check](./screenshots/sql_pgadmin_species.png)
 
-This migration ensured that the solution could scale and integrate easily with other analytics platforms.
+This migration ensured that the solution could scale and integrate easily with other analytics platforms, and most importantly was accesible easily from different locations.
 
 ---
 
@@ -100,8 +85,10 @@ Before generating Power BI dashboards, a final review was conducted in Excel. Th
 ### Data Modeling
 Power BI imported the normalized, cleaned datasets. Relationships were established across tables, and DAX (Data Analysis Expressions) measures were implemented for dynamic calculations and color-coding.
 
-Linking Pokémon IDs to dual types in Power BI:
-![Dual Typings in Power BI](./screenshots/pbi_dual_typings_table.png)
+Robust relationships ensured consistent interactions:
+![Power BI Relationships](./screenshots/pbi_relationships.png)
+
+### Custom color themes
 
 Generational color themes via DAX:
 ![Generation-Based Color Coding DAX](./screenshots/pbi_GenerationsColorCode_DAX.png)
@@ -110,22 +97,11 @@ Primary type color assignments:
 
 ### Initial Dashboards
 Introductory pages offered a high-level overview of distributions by generation and type:
-![Intro Dashboard Page 1](./screenshots/pbi_Intro.png)
 ![Intro Dashboard Page 2](./screenshots/pbi_Intro_2.png)
 
 Legendary vs. regular Pokémon trends:
-![Legendary vs. Regular Distribution](./screenshots/pbi_Legendary.png)
 ![Detailed Legendary Distribution](./screenshots/pbi_Legendary_2.png)
 
-### Dynamic Stat Selection Measures
-DAX measures enabled user-driven insights:
-![DAX: Pokémon With Highest Stat](./screenshots/pbi_PokemonWithHighestStat_DAX.png)
-
-Robust relationships ensured consistent interactions:
-![Power BI Relationships](./screenshots/pbi_relationships.png)
-
-Reference species table within Power BI:
-![Species Data in Power BI](./screenshots/pbi_species_table.png)
 
 ---
 
@@ -133,17 +109,7 @@ Reference species table within Power BI:
 
 ### Stats Distribution by Type
 Visuals displayed average and max values for selected stats, segmented by type. Users could toggle among stats:
-![Stats by Type #1](./screenshots/pbi_StatsByType.png)
 ![Stats by Type #2](./screenshots/pbi_StatsByType_2.png)
-
-### Strongest Pokémon Type Identification
-Custom DAX identified the primary type of the top-performing Pokémon:
-![Strongest Pokémon Type DAX](./screenshots/pbi_StrongestPokemonPrimaryType_DAX.png)
-![Color Highlight for Strongest Type](./screenshots/pbi_StrongestPokemonPrimaryTypeColor_DAX.png)
-
-### Speed-Focused Analyses (Survival of the Fittest)
-Treemaps and bar charts concentrated on speed metrics:
-![Speed Analysis](./screenshots/pbi_SurvivalOfTheFittest_DAX.png)
 
 ### Dynamic X/Y Axis Measures
 Additional DAX measures offered average and max calculations along both X and Y axes, enriching comparative capabilities:
@@ -152,6 +118,14 @@ Additional DAX measures offered average and max calculations along both X and Y 
 
 A stat selector table enabled flexible, user-defined comparisons:
 ![Stat Selector Implementation](./screenshots/pbi_XStatSelector_DAX.png)
+
+### Dynamic Stat Selection Measures
+DAX measures enabled user-driven insights:
+![DAX: Pokémon With Highest Stat](./screenshots/pbi_PokemonWithHighestStat_DAX.png)
+
+### Speed-Focused Analyses (Survival of the Fittest)
+Treemaps for type selection and bar charts concentrated on speed metrics:
+![Speed Analysis](./screenshots/pbi_SurvivalOfTheFittest_DAX.png)
 
 ---
 
