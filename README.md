@@ -148,8 +148,6 @@ Treemaps and bar charts concentrated on speed metrics:
 ### Dynamic X/Y Axis Measures
 Additional DAX measures offered average and max calculations along both X and Y axes, enriching comparative capabilities:
 ![X-Axis Avg Stat DAX](./screenshots/pbi_XAvgDynamicStat_DAX.png)
-![X-Axis Max Stat DAX](./screenshots/pbi_XMaxDynamicStat_DAX.png)
-![Y-Axis Avg Stat DAX](./screenshots/pbi_YAvgDynamicStat_DAX.png)
 ![Y-Axis Max Stat DAX](./screenshots/pbi_YMaxDynamicStat_DAX.png)
 
 A stat selector table enabled flexible, user-defined comparisons:
@@ -157,7 +155,7 @@ A stat selector table enabled flexible, user-defined comparisons:
 
 ---
 
-## Comprehensive Analysis and Insights
+## Conclusions
 
 ### User-Centric Design
 The pipeline—from API extraction to Power BI dashboards—was built to empower end-users. Pokémon enthusiasts, data analysts, or decision-makers can navigate intuitively, tailor their queries, and discover patterns without technical impediments.
