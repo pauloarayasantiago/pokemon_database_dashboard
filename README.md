@@ -111,15 +111,15 @@ Legendary vs. regular Pokémon trends:
 Visuals displayed average and max values for selected stats, segmented by type. Users could toggle among stats:
 ![Stats by Type #2](./screenshots/pbi_StatsByType_2.png)
 
-### Dynamic X/Y Axis Measures
-Additional DAX measures offered average and max calculations along both X and Y axes, enriching comparative capabilities:
-![X-Axis Avg Stat DAX](./screenshots/pbi_XAvgDynamicStat_DAX.png)
-![Y-Axis Max Stat DAX](./screenshots/pbi_YMaxDynamicStat_DAX.png)
+### Dynamic Stat Selection Measures
 
 A stat selector table enabled flexible, user-defined comparisons:
 ![Stat Selector Implementation](./screenshots/pbi_XStatSelector_DAX.png)
 
-### Dynamic Stat Selection Measures
+Additional DAX measures offered average and max calculations along both X and Y axes, enriching comparative capabilities:
+![X-Axis Avg Stat DAX](./screenshots/pbi_XAvgDynamicStat_DAX.png)
+![Y-Axis Max Stat DAX](./screenshots/pbi_YMaxDynamicStat_DAX.png)
+
 DAX measures enabled user-driven insights:
 ![DAX: Pokémon With Highest Stat](./screenshots/pbi_PokemonWithHighestStat_DAX.png)
 
